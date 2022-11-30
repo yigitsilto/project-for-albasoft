@@ -26,5 +26,10 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Category::destroy($id);
     }
+
+    public function find(int $id)
+    {
+        return Category::query()->find($id);
+    }
 }
 

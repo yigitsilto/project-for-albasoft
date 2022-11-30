@@ -13,7 +13,7 @@ class CategoryDeleteCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class CategoryDeleteCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id' => 'required|integer|exists:categories,id'
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'id' => $this->route('category')->getKey(),
+        ]);
     }
 }

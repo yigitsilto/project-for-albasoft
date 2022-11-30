@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Category\CategoryDeleteCategoryRequest;
 use App\Http\Requests\Category\CategoryStoreCategoryRequest;
+use App\Http\Requests\Category\CategoryUpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Repositories\Category\CategoryRepositoryInterface;
@@ -44,11 +46,10 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
     {
-        //
+        return new CategoryResource($this->categoryRepository->find($category->getKey()));
     }
 
 
@@ -57,11 +58,11 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryUpdateCategoryRequest $request, Category $category)
     {
-        //
+         $this->categoryRepository->update($category, $request->all());
+         return true;
     }
 
     /**
@@ -70,8 +71,8 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(CategoryDeleteCategoryRequest  $request, Category $category)
     {
-        //
+        return $this->categoryRepository->delete($category->getKey());
     }
 }
