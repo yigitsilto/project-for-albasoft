@@ -11,3 +11,5 @@ php artisan db:seed</p>
 Repository Pattern kullanılmıştır.<br>
 Request içinde role kontrolünü direk authorize kısmından yaptım ancak detaylı yetkilendirme için policy kullanılabilirdi.</p>
 <p class="has-line-data" data-line-start="19" data-line-end="20">Projede ki son aşamayı kullanıcının sepete ürün yükleme ve silmesi kısmını yetiştiremedim. Çalıştığım şirketteki mesai bu ara biraz yoğundu. Ancak yaptıklarım yeterli olur diye düşünüyorum. Sepete ürün eklemek için tablo yapısını basit bir şekilde oluşturmuştum. Basit bir crud ile product_id ve user_id ile bu işlemler kısaca yapılabilir.</p>
+
+<p>Proje dosyaları master branchindedir!!!!</p>
