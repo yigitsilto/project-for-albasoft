@@ -20,7 +20,6 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->integer('category_id');
 //            $table->foreign('category_id')->references('id')->on('categories');
-            $table->string('image_path');
             $table->timestamps();
         });
     }

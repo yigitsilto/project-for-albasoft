@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class ProductStoreRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class ProductStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->role === "admin"; // this is a basic authorization check. we can write policies for bigger authorizations.
     }
 
     /**
@@ -24,7 +25,17 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:products,slug',
+            'description' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->name),
+        ]);
     }
 }

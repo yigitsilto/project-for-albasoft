@@ -19,6 +19,7 @@ Route::group([
     'middleware' => 'api',
 ], function () {
 Route::resource('categories', 'CategoryController');
+Route::resource('products', 'ProductController');
 
 });
 

@@ -13,7 +13,7 @@ class CategoryDeleteCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->role === "admin"; // this is a basic authorization check. we can write policies for bigger authorizations.
     }
 
     /**

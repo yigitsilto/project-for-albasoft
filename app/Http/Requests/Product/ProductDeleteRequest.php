@@ -13,7 +13,7 @@ class ProductDeleteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->role === "admin"; // this is a basic authorization check. we can write policies for bigger authorizations.
     }
 
     /**
@@ -24,7 +24,14 @@ class ProductDeleteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id' => 'required|exists:products,id',
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'id' => $this->route('product')->getKey()
+        ]);
     }
 }
