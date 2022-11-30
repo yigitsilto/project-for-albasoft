@@ -29,7 +29,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function find(int $id)
     {
-        return Category::query()->find($id);
+        return Category::query()->with('products')->find($id);
     }
 }
 
